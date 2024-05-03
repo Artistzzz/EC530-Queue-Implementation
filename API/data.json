@@ -1,0 +1,114 @@
+{
+    "API": {
+      "Authentication": {
+        "Login": {
+          "endpoint": "/login",
+          "method": "POST",
+          "description": "Authenticates users and returns a JWT for accessing protected routes.",
+          "requestBody": {
+            "username": "string",
+            "password": "string"
+          },
+          "response": {
+            "access_token": "JWT token"
+          }
+        }
+      },
+      "NavigationModule": {
+        "CreateNavigation": {
+          "endpoint": "/navigation",
+          "method": "POST",
+          "description": "Creates a new navigation module entry.",
+          "requestBody": {
+            "name": "string",
+            "version": "string",
+            "parameters": {
+              "accuracy": "high",
+              "speed": "fast"
+            }
+          },
+          "response": {
+            "message": "Navigation module created",
+            "id": "integer"
+          }
+        },
+        "ManageNavigationModule": {
+          "endpoint": "/navigation/{nav_id}",
+          "method": "GET, PUT, DELETE",
+          "description": "Retrieves, updates, or deletes a navigation module entry.",
+          "requestBody": {
+            "name": "string (optional for GET, required for PUT)",
+            "version": "string (optional for GET, required for PUT)",
+            "parameters": {
+              "accuracy": "high (optional for GET, required for PUT)",
+              "speed": "fast (optional for GET, required for PUT)"
+            }
+          },
+          "response": {
+            "GET": {
+              "module": {
+                "name": "string",
+                "version": "string",
+                "parameters": "dictionary"
+              }
+            },
+            "PUT": {
+              "message": "Navigation module updated",
+              "data": "Updated module data"
+            },
+            "DELETE": {
+              "message": "Navigation module deleted"
+            }
+          }
+        }
+      },
+      "CollisionAvoidanceModule": {
+        "CreateCollisionAvoidance": {
+          "endpoint": "/collision-avoidance",
+          "method": "POST",
+          "description": "Creates a new collision avoidance module entry.",
+          "requestBody": {
+            "name": "string",
+            "sensor_type": "string",
+            "settings": {
+              "sensitivity": "high",
+              "range": "100m"
+            }
+          },
+          "response": {
+            "message": "Collision avoidance module created",
+            "id": "integer"
+          }
+        },
+        "ManageCollisionAvoidanceModule": {
+          "endpoint": "/collision-avoidance/{ca_id}",
+          "method": "GET, PUT, DELETE",
+          "description": "Retrieves, updates, or deletes a collision avoidance module entry.",
+          "requestBody": {
+            "name": "string (optional for GET, required for PUT)",
+            "sensor_type": "string (optional for GET, required for PUT)",
+            "settings": {
+              "sensitivity": "high (optional for GET, required for PUT)",
+              "range": "100m (optional for GET, required for PUT)"
+            }
+          },
+          "response": {
+            "GET": {
+              "module": {
+                "name": "string",
+                "sensor_type": "string",
+                "settings": "dictionary"
+              }
+            },
+            "PUT": {
+              "message": "Collision avoidance module updated",
+              "data": "Updated module data"
+            },
+            "DELETE": {
+              "message": "Collision avoidance module deleted"
+            }
+          }
+        }
+      }
+    }
+  }
